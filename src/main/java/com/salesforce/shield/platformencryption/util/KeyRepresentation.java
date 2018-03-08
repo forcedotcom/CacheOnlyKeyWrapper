@@ -42,6 +42,7 @@ public class KeyRepresentation {
         return kid;
     }
 
+    //Note: This is the critical piece of code that properly formats the JWE as expected by CacheOnlyKeys
     public String getJwe() {
 
         String compactSerialization = null;
@@ -60,6 +61,7 @@ public class KeyRepresentation {
     }
 
 
+    //Note: This is the critical piece of code that properly formats the JSON format that carries the kid and JWE
     public String toString() {
         StringBuffer jsonRepresentation = new StringBuffer("{");
         jsonRepresentation.append("\"kid\" : \"" + kid + "\",");
