@@ -143,7 +143,7 @@ Register a named credential with the URL of your key service or the service that
 For example, if you registered https://byok.customer.com/keys/ as your named credential, using Basic Authentication with a username and password of  Aladdin:OpenSesame, and a Key Identifier of 982c375b-f46b-4423-8c2d-4d1a69152a0b, then Salesforce would make a web service request to 
 
 ```
-https://byok.herokuapp.com/keys/982c375b-f46b-4423-8c2d-4d1a69152a0b
+https://byok.customer.com/keys/982c375b-f46b-4423-8c2d-4d1a69152a0b
 ```
 
 and expect the following response (using the examples above...your JWE would of course be different):
