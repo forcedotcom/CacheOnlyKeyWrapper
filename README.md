@@ -103,18 +103,6 @@ N2WVMbpAxipAtG9O
 ```
 
 
-
-**Next, Generate an Initialization Vector**
-
-Generate a random Initialization Vector to be used as input to the AES wrapping of the DEK.  Encode this Initialization Vector as BASE64URL(Initialization Vector) 
-
-The result might look like this:
-
-```
-N2WVMbpAxipAtG9O
-```
-
-
 **Now, Encrypt your Data Encryption Key**
 
 Your DEK will be encrypted with your CEK.  This uses AES GCM, which has the concept of additional integrity protection, or Additional Authenticated Data.  In this case the JWE header.
