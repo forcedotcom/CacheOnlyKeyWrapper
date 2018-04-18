@@ -34,7 +34,7 @@ If you're not familiar with JWE, it stands for JSON Web Encryption and represent
 
 While JWE allows for a variety of cryptographic algorithms and respresentations, Shield Platform Encryption only allows for a specific use of JWE, ensuring clear usage guidlines and appropriate protections for customer keys.  Opinionated crypto is a good thing (assuming you like our opinion)   Specificaly we are using a JWE with RSAES-OAEP and AES GCM as illustrated in [Appendix A1 of the RFC](https://tools.ietf.org/html/rfc7516#appendix-A.1)                                  
 
-####Prerequisites
+#### Prerequisites
 
 **Generate a Data Encryption Key**
 
@@ -48,7 +48,7 @@ To wrap the DEK appropriately we'll first generate a content encryption key.  Th
 
 With the DEK and CEK in place, we'll first protect the CEK so it can be passed to Salesforce.  Since AES encryption uses a symmetric key, we'll be wrapping this using RSA with the BYOK Wrapping Key which is downloaded from Salesforce.  Generate and download your BYOK Certificate here:  https://help.salesforce.com/articleView?id=security_pe_byok_generate_cert.htm&type=5
 
-####Construct your JWE
+#### Construct your JWE
 
 Next, you'll actually generate your JWE.  This involves creating the header, wrapping the CEK with your BYOK Certificate, wrapping your DEK with your CEK wrap your CEK, and assembling it all into the JWE format.   
 
