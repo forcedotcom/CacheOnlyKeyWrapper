@@ -44,7 +44,7 @@ public class WrapEncryptionKey {
         Options options = new Options();
         options.addOption( "h","help", false, "Help for WrapEncryptionKey" );
         options.addOption( "c", "cert", true, "Path to Certificate File (required)" );
-        options.addOption( "b", "bytes", true, "Path to Hex Encoded BYOK AES KEY (optional)" );
+        options.addOption( "b", "bytes", true, "Hex Encoded BYOK AES KEY (optional)" );
         options.addOption( "i", "kid", true, "Key Identifier (optional)" );
         options.addOption( "s", "split",false, "Protect Encryption key with Shamir's Secret Sharing (optional)" );
         options.addOption( "n", "num",true, "Number of N parts for Shamir's Secret Sharing (optional)" );
@@ -80,7 +80,7 @@ public class WrapEncryptionKey {
                     String hexEncodedKey = line.getOptionValue( "b" );
                     try {
                         byokKey = Hex.decodeHex(hexEncodedKey);
-                        if (byokKey.length != 32) throw new CryptoException("You must specify Hex encoded 256 bit AES key");
+                        if (byokKey.length != 32) throw new CryptoException("You must specify a Hex encoded 256 bit AES key");
                         System.out.println("Wrapping user specfied AES key");
                     } catch (DecoderException e) {
                         throw new CryptoException("Unable to hex decode AES key", e);
