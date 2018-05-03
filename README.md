@@ -175,8 +175,9 @@ HTTP/1.1 200 OK
 
 ---
 
-1. Run `mvn package` to build the application
-2. Run the WrapEncryptionKey utility in the ./bin directory.   It will give you description of it's options as follows 
+Run `mvn package` to build the application
+
+Run the WrapEncryptionKey utility in the ./bin directory.   It will give you description of it's options as follows 
 
 ```
 $ ./WrapEncryptionKey 
@@ -194,4 +195,17 @@ usage: WrapEncryptionKey
 
 ```
 
+
+Or, run the WrapAWSEncryptionKey utility which allows for you to generate keys using Amazon KMS instead of providing or generating one locally.
+```
+$ ./WrapAWSEncryptionKey 
+usage: WrapAWSEncryptionKey
+  -a,--alias <arg>        AWS CMK Alias (required)
+  -ak,--accesskey <arg>   AWS Access Key (required)
+  -c,--cert <arg>         Path to Certificate File (required)
+  -h,--help               Help for WrapAWSEncryptionKey
+  -i,--kid <arg>          Key Identifier (optional)
+  -r,--region <arg>       AWS Region (required)
+  -sk,--secretkey <arg>   AWS Secret Key (required)
+```
 
