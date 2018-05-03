@@ -81,7 +81,7 @@ public class WrapAWSEncryptionKey {
                 String AWS_ALIAS = line.getOptionValue( "a" );
 
 
-                //or we generate an AES key for them
+                //Call KMS to generate an AES key
                 System.out.println("Calling AWS KMS to generate a new 256bit AES Key with Customer Master Key: " + AWS_ALIAS);
                 BasicAWSCredentials creds = new BasicAWSCredentials(AWS_ACCESS_KEY, AWS_SECRET_KEY);
                 AWSKMS kmsClient = AWSKMSClientBuilder.standard().withCredentials(new AWSStaticCredentialsProvider(creds)).withRegion(AWS_REGION).build();
@@ -90,7 +90,7 @@ public class WrapAWSEncryptionKey {
                 String cipherText = Hex.encodeHexString(response.getCiphertextBlob());
                 System.out.println("Generated KMS KeyId: " + response.getKeyId());
 
-                //Write the wrapped key to a file
+                //Write the wrapped key to a file in the Cache Only Key Representation
                 KeyRepresentation keyRepresentation = new KeyRepresentation(kid, response.getPlaintext().array(), publicWrappingKey);
                 FileOutputStream keyRepresentationFile = new FileOutputStream(kid);
                 keyRepresentationFile.write(keyRepresentation.toString().getBytes(StandardCharsets.UTF_8));
@@ -98,6 +98,7 @@ public class WrapAWSEncryptionKey {
 
                 System.out.println("Cache-Only Key representation written to file: " + kid);
 
+                //Write the KMS generated key to a backup file (encypted)
                 FileOutputStream backupFile = new FileOutputStream(kid + ".backup");
                 StringBuffer backup = new StringBuffer();
                 backup.append("KeyId:");
