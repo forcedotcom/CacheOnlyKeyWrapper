@@ -2,7 +2,7 @@
 
 ## Overview
 
-In Summer 18, Salesforce's Shield Platform Encryption is introducing a new pilot feature called Cache-Only Keys.  This capability enhances the existing Bring Your Own Key (BYOK) capability by allowing customers to host their key material in a wrapped format which Salesforce will fetch as required.  While this will be cached in ecncrypted form, Salesforce will not retain or persist the key material in any system of record or backups. 
+In Summer 18, Salesforce's Shield Platform Encryption is introducing a new pilot feature called Cache-Only Keys.  This capability enhances the existing Bring Your Own Key (BYOK) capability by allowing customers to host their key material in a wrapped format which Salesforce will fetch as required.  While this will be cached in an encrypted form, Salesforce will not retain or persist the key material in any system of record or backups. 
 
 When a key is needed by Salesforce for crypto operations, a callout is made directly to the customer's registered service to request the key.  The key exchange protocol and format requires that Keys are wrapped in a specific JSON format.  This project provides a sample utility to perform that wrapping, allowing customers to wrap their keys for hosting or provide the basis for understanding of how to build their own key service if desired.
 
