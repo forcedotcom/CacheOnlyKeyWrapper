@@ -63,7 +63,7 @@ BASE64URL( Authentication Tag)
 
 **First, Create the JWE Protected Header**
 
-The header is a JSON document that has 3 claims
+The header is a JSON object that has 3 claims
 
 * **"alg"** The algorithm used to encrypt the CEK.   We only support the value RSA-OAEP
 * **"enc"** The algorithm used to encrypt the DEK.   We only support the value A256GCM
