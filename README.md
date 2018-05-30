@@ -2,7 +2,7 @@
 
 ## Overview
 
-In Summer 18, Salesforce's Shield Platform Encryption is introducing a new pilot feature called Cache-Only Keys.  This capability enhances the existing Bring Your Own Key (BYOK) capability by allowing customers to host their key material in a wrapped format which Salesforce will fetch as required.  While this will be cached in ecncrypted form, Salesforce will not retain or persist the key material in any system of record or backups. 
+In Summer 18, Salesforce's Shield Platform Encryption is introducing a new pilot feature called Cache-Only Keys.  This capability enhances the existing Bring Your Own Key (BYOK) capability by allowing customers to host their key material in a wrapped format which Salesforce will fetch as required.  While this will be cached in an encrypted form, Salesforce will not retain or persist the key material in any system of record or backups. 
 
 When a key is needed by Salesforce for crypto operations, a callout is made directly to the customer's registered service to request the key.  The key exchange protocol and format requires that Keys are wrapped in a specific JSON format.  This project provides a sample utility to perform that wrapping, allowing customers to wrap their keys for hosting or provide the basis for understanding of how to build their own key service if desired.
 
@@ -44,7 +44,7 @@ As the entire point of Cache-Only Keys is to allow customers to bring their own 
 
 To wrap the DEK appropriately we'll first generate a content encryption key.  This is a 256 bit AES key, and it will be used to wrap the DEK.  It is the customer's responsbility to generate this CEK, and do so in a cryptographically secure fashion.   
 
-**Generate a BYOK Certificatey**
+**Generate a BYOK Certificate**
 
 With the DEK and CEK in place, we'll first protect the CEK so it can be passed to Salesforce.  Since AES encryption uses a symmetric key, we'll be wrapping this using RSA with the BYOK Wrapping Key which is downloaded from Salesforce.  Generate and download your BYOK Certificate here:  https://help.salesforce.com/articleView?id=security_pe_byok_generate_cert.htm&type=5
 
@@ -134,7 +134,7 @@ eyJhbGciOiJSU0EtT0FFUCIsImVuYyI6IkEyNTZHQ00iLCJraWQiOiI5ODJjMzc1Yi1mNDZiLTQ0MjMt
 
 ### Putting it all together
 
-You'll now host this wrapped key inside of the key reponse at a location Salesforce can request.  To secure this, Cache-Only Keys leveraged a featured called [Named Credentials](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_named_credentials.htm) 
+You'll now host this wrapped key inside of the key reponse at a location Salesforce can request.  To secure this, Cache-Only Keys leverage a feature called [Named Credentials](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_callouts_named_credentials.htm) 
 
 Named Credentials provide customers a way to make secure web service calls that leverage popular authentication formats.  All calls that go through the Named Credential are wrapped transparently in the authentication and security layers that are declared in the connection.  
 
